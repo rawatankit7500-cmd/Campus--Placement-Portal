@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Resumes</title>
+    <link rel="stylesheet" href="/static/dashboard.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+    <!-- ONLY RIGHT PANEL FULL WIDTH -->
+    <div class="right-panel" style="width:100%; margin-left:0;">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+            <h2 class="welcome-text">📄 Student Resumes</h2>
+        </div>
+
+        <!-- TABLE -->
+        <div class="placement-section">
+
+            <table class="placement-table">
+
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Course</th>
+                    <th>CGPA</th>
+                    <th>Resume</th>
+                </tr>
+
+                {% for s in students %}
+                <tr>
+                    <td>{{ s.name }}</td>
+                    <td>{{ s.email }}</td>
+                    <td>{{ s.course }}</td>
+                    <td>{{ s.cgpa }}</td>
+                    <td>
+                        <a href="{{ url_for('static', filename='uploads/' + s.resume) }}" 
+   target="_blank" class="btn">
+   👁 View Resume
+</a>
+
+<iframe 
+    src="{{ url_for('static', filename='uploads/' + s.resume) }}" 
+    width="100%" 
+    height="500px">
+</iframe>
+
+                        <a href="{{ url_for('static', filename='uploads/' + s.resume) }}" 
+                           download class="btn">⬇ Download</a>
+                    </td>
+                </tr>
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+        <!-- 🔥 BOTTOM BUTTONS -->
+        <div style="text-align:center; margin: 30px 0;">
+
+            <a href="/admin/dashboard" class="btn">⬅ Back to Dashboard</a>
+
+            <a href="/logout" class="btn" style="background:#e74c3c;">Logout</a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exams</title>
+    <link rel="stylesheet" href="/static/dashboard.css">
+</head>
+<body>
+
+<div class="dashboard">
+<div class="right-panel" style="width:100%;">
+
+<div class="topbar">
+    <h2>📝 Exams</h2>
+</div>
+
+<!-- ADD -->
+<form method="POST" action="/admin/add_exam" style="text-align:center;">
+    <input type="text" name="subject" placeholder="Subject" required>
+    <input type="date" name="date" required>
+    <input type="text" name="time" placeholder="Time" required>
+    <input type="text" name="type" placeholder="Type" required>
+    <button class="btn">Add</button>
+</form>
+
+<!-- LIST -->
+<div class="placement-section">
+<table class="placement-table">
+<tr>
+<th>Subject</th>
+<th>Date</th>
+<th>Time</th>
+<th>Type</th>
+<th>Action</th>
+</tr>
+
+{% for e in exams %}
+<tr>
+<td>{{ e.subject }}</td>
+<td>{{ e.date }}</td>
+<td>{{ e.time }}</td>
+<td>{{ e.type }}</td>
+<td>
+<a href="/admin/delete_exam/{{ e.id }}" class="btn logout">Delete</a>
+</td>
+</tr>
+{% endfor %}
+
+</table>
+</div>
+
+<div class="bottom-actions">
+<a href="/admin/dashboard" class="btn">⬅ Back</a>
+</div>
+
+</div>
+</div>
+
+</body>
+</html>

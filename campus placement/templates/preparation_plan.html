@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Preparation Plan</title>
+    <link rel="stylesheet" href="/static/dashboard.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+    <!-- LEFT PANEL -->
+    <div class="left-panel">
+
+       {% if student.profile_pic %}
+    <img src="{{ url_for('static', filename='uploads/' + student.profile_pic) }}" class="profile-img">
+{% else %}
+    <img src="{{ url_for('static', filename='default.png') }}" class="profile-img">
+{% endif %}
+        <h2>{{ student.name }}</h2>
+        <p>{{ student.email }}</p>
+
+        <hr>
+
+        <h3>🎯 Goal</h3>
+        <p>Target: Get placed in top company</p>
+
+        <h3>📅 Daily Focus</h3>
+        <p>2-3 Hours Coding</p>
+        <p>1 Hour Aptitude</p>
+        <p>30 min Revision</p>
+
+        <div class="logout-box">
+            <a href="/student/dashboard" class="logout-btn">⬅ Back</a>
+            <a href="/logout" class="logout-btn">Logout</a>
+        </div>
+
+    </div>
+
+
+    <!-- RIGHT PANEL -->
+    <div class="right-panel">
+
+        <div class="topbar">
+            <h2 class="welcome-text">Preparation Plan</h2>
+        </div>
+
+        <!-- PLAN BOX -->
+        <div class="prep-container">
+
+            <div class="prep-box">
+                <h3>📘 Aptitude</h3>
+                <ul>
+                    <li>Quantitative Aptitude</li>
+                    <li>Logical Reasoning</li>
+                    <li>Verbal Ability</li>
+                </ul>
+            </div>
+
+            <div class="prep-box">
+                <h3>💻 Technical</h3>
+                <ul>
+                    <li>Data Structures</li>
+                    <li>Algorithms</li>
+                    <li>DBMS, OS, CN</li>
+                </ul>
+            </div>
+
+            <div class="prep-box">
+                <h3>🧑‍💼 Interview</h3>
+                <ul>
+                    <li>HR Questions</li>
+                    <li>Mock Interviews</li>
+                    <li>Communication Skills</li>
+                </ul>
+            </div>
+
+            <div class="prep-box">
+                <h3>🚀 Weekly Target</h3>
+                <ul>
+                    <li>10 Coding Problems</li>
+                    <li>5 Aptitude Tests</li>
+                    <li>1 Mock Interview</li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

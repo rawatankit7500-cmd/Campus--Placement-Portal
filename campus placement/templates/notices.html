@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Notices</title>
+    <link rel="stylesheet" href="/static/dashboard.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+    <!-- LEFT PANEL -->
+    <div class="left-panel">
+
+        {% if student.profile_pic %}
+            <img src="{{ url_for('static', filename='uploads/' ~ student.profile_pic) }}" class="profile-img">
+        {% else %}
+            <img src="{{ url_for('static', filename='default.png') }}" class="profile-img">
+        {% endif %}
+
+        <h2>{{ student.name }}</h2>
+        <p>{{ student.email }}</p>
+
+        <hr>
+
+        <h3>👤 Personal Details</h3>
+        <hr>
+
+        <p><b>ERP ID:</b> {{ student.erp_id }}</p>
+        <p><b>Roll No:</b> {{ student.roll_no }}</p>
+        <p><b>DOB:</b> {{ student.dob }}</p>
+        <p><b>Father Name:</b> {{ student.father_name }}</p>
+        <p><b>Phone:</b> {{ student.phone }}</p>
+        <p><b>Address:</b> {{ student.address }}</p>
+
+        <hr>
+
+        <h3>🎓 Academic Details</h3>
+        <hr>
+
+        <p><b>Course:</b> {{ student.course }}</p>
+        <p><b>Semester:</b> {{ student.year }}</p>
+        <p><b>Section:</b> {{ student.section }}</p>
+        <p><b>CGPA:</b> {{ student.cgpa }}</p>
+
+        <hr>
+
+        <div class="logout-box">
+            <a href="/student/dashboard" class="logout-btn">⬅ Back</a>
+        </div>
+
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="right-panel">
+
+        <div class="topbar">
+            <h2 class="welcome-text">📢 Latest Notices</h2>
+        </div>
+
+        <div class="notice-container">
+
+            {% if notices %}
+                {% for n in notices %}
+                    <div class="notice-box">
+                        <h3>{{ n.title }}</h3>
+                        <p>{{ n.description }}</p>
+                        <span>📅 {{ n.date }}</span>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p style="text-align:center;">No notices available</p>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

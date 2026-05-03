@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Notices</title>
+    <link rel="stylesheet" href="/static/dashboard.css">
+</head>
+<body>
+
+<div class="dashboard">
+<div class="right-panel" style="width:100%;">
+
+<div class="topbar">
+    <h2>📢 Notices</h2>
+</div>
+
+<!-- ADD -->
+<form method="POST" action="/admin/add_notice" style="text-align:center;">
+    <input type="text" name="title" placeholder="Title" required>
+    <input type="text" name="description" placeholder="Description" required>
+    <button class="btn">Add</button>
+</form>
+
+<!-- LIST -->
+<div class="placement-section">
+<table class="placement-table">
+<tr>
+<th>Title</th>
+<th>Description</th>
+<th>Date</th>
+<th>Action</th>
+</tr>
+
+{% for n in notices %}
+<tr>
+<td>{{ n.title }}</td>
+<td>{{ n.description }}</td>
+<td>{{ n.date }}</td>
+<td>
+<a href="/admin/delete_notice/{{ n.id }}" class="btn logout">Delete</a>
+</td>
+</tr>
+{% endfor %}
+
+</table>
+</div>
+
+<div class="bottom-actions">
+<a href="/admin/dashboard" class="btn">⬅ Back</a>
+</div>
+
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Applied Companies</title>
+    <link rel="stylesheet" href="/static/dashboard.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+    <!-- RIGHT PANEL -->
+    <div class="right-panel">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+            <h2 class="welcome-text">Applied Companies</h2>
+        </div>
+
+        <!-- TABLE -->
+        <div class="placement-section">
+
+            <table class="applied-table">
+
+                <tr>
+                    <th>Company</th>
+                    <th>Role</th>
+                    <th>Package</th>
+                    <th>Status</th>
+                </tr>
+
+                {% if applied %}
+                    {% for c in applied %}
+                    <tr>
+                        <td>{{ c.company_name }}</td>
+                        <td>{{ c.job_role }}</td>
+                        <td>{{ c.package }}</td>
+                        <td>
+                            {% if c.status == 'Selected' %}
+                                <span class="status-selected">✔ Selected</span>
+                            {% elif c.status == 'Rejected' %}
+                                <span class="status-rejected">❌ Rejected</span>
+                            {% else %}
+                                <span class="status-pending">⏳ Pending</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="4">No Applications Yet</td>
+                    </tr>
+                {% endif %}
+
+            </table>
+
+            <div class="back-container">
+                <a href="/student/dashboard" class="back-btn">⬅ Back to Dashboard</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Students</title>
+    <link rel="stylesheet" href="/static/dashboard.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+    <!-- FULL WIDTH PANEL -->
+    <div class="right-panel" style="width:100%; margin-left:0;">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+            <h2 class="welcome-text">👨‍🎓 Students List</h2>
+        </div>
+
+        <!-- SEARCH BAR -->
+        <div style="text-align:center; margin:20px;">
+            <input type="text" id="searchInput" placeholder="Search student..." 
+                   style="padding:10px; width:250px; border-radius:20px; border:1px solid #ccc;">
+        </div>
+
+        <!-- TABLE -->
+        <div class="placement-section">
+
+            <table class="placement-table" id="studentTable">
+
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Course</th>
+                    <th>CGPA</th>
+                    <th>Resume</th>
+                    <th>Action</th>
+                </tr>
+
+                {% for s in students %}
+                <tr>
+                    <td>{{ s.name }}</td>
+                    <td>{{ s.email }}</td>
+                    <td>{{ s.course }}</td>
+                    <td>{{ s.cgpa }}</td>
+                    <td>
+                        <a href="{{ url_for('static', filename='uploads/' + s.resume) }}" target="_blank" class="btn">👁</a>
+                    </td>
+                    <td>
+                        <a href="/admin/delete_student/{{ s.id }}" class="btn logout"
+                           onclick="return confirm('Delete this student?')">
+                           🗑 Delete
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+        <!-- BOTTOM BUTTONS -->
+        <div class="bottom-actions">
+            <a href="/admin/dashboard" class="btn">⬅ Back to Dashboard</a>
+            <a href="/logout" class="btn logout">Logout</a>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- 🔍 SEARCH SCRIPT -->
+<script>
+document.getElementById("searchInput").addEventListener("keyup", function() {
+    let filter = this.value.toLowerCase();
+    let rows = document.querySelectorAll("#studentTable tr");
+
+    rows.forEach((row, index) => {
+        if(index === 0) return; // skip header
+        let text = row.innerText.toLowerCase();
+        row.style.display = text.includes(filter) ? "" : "none";
+    });
+});
+</script>
+
+</body>
+</html>

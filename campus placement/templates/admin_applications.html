@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Applications</title>
+    <link rel="stylesheet" href="/static/dashboard.css">
+</head>
+<body>
+
+<div class="dashboard">
+<div class="right-panel" style="width:100%;">
+
+<div class="topbar">
+    <h2 class="welcome-text">📋 Applications</h2>
+</div>
+
+<div class="placement-section">
+
+<table class="placement-table">
+<tr>
+    <th>Student</th>
+    <th>Company</th>
+    <th>Status</th>
+    <th>Action</th>
+</tr>
+
+{% for a in applications %}
+<tr>
+    <td>{{ a.name }}</td>
+    <td>{{ a.company_name }}</td>
+    <td>{{ a.status }}</td>
+    <td>
+        <a href="/admin/update_status/{{ a.id }}/Selected" class="btn">✔</a>
+        <a href="/admin/update_status/{{ a.id }}/Rejected" class="btn logout">❌</a>
+    </td>
+</tr>
+{% endfor %}
+
+</table>
+
+</div>
+
+<div class="bottom-actions">
+<a href="/admin/dashboard" class="btn">⬅ Back</a>
+<a href="/logout" class="btn logout">Logout</a>
+</div>
+
+</div>
+</div>
+
+</body>
+</html>

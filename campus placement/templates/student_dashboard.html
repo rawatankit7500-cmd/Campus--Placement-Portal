@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="/static/dashboard.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+    <!-- LEFT PANEL (UNCHANGED + CLEAN) -->
+    <div class="left-panel">
+
+        {% if student.profile_pic %}
+    <img src="{{ url_for('static', filename='uploads/' + student.profile_pic) }}" class="profile-img">
+{% else %}
+    <img src="{{ url_for('static', filename='default.png') }}" class="profile-img">
+{% endif %}
+
+        <h2>{{ student.name }}</h2>
+        <p>{{ student.email }}</p>
+
+        <hr>
+
+        <h3>👤 Personal Details</h3><hr>
+        <p><b>ERP ID:</b> {{ student.erp_id }}</p>
+        <p><b>Roll No:</b> {{ student.roll_no }}</p>
+        <p><b>DOB:</b> {{ student.dob }}</p>
+        <p><b>Father Name:</b> {{ student.father_name }}</p>
+        <p><b>Phone:</b> {{ student.phone }}</p>
+        <p><b>Address:</b> {{ student.address }}</p>
+
+        <hr>
+
+        <h3>🎓 Academic Details</h3><hr>
+        <p><b>Course:</b> {{ student.course }}</p>
+        <p><b>Semester:</b> {{ student.year }}</p>
+        <p><b>Section:</b> {{ student.section }}</p>
+        <p><b>CGPA:</b> {{ student.cgpa }}</p>
+        <hr>
+        <!-- LOGOUT -->
+        <div class="logout-box">
+            <a href="/logout" class="logout-btn">Logout</a>
+        </div>
+
+    </div>
+
+
+    <!-- RIGHT PANEL -->
+    <div class="right-panel">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+            <h2 class="welcome-text">Welcome, {{ student.name }}</h2>
+        </div>
+             <!-- STATS -->
+        <div class="stats">
+            <div class="stat-box">
+            <h2>200+</h2>
+            <p>Students Placed</p>
+            </div>
+            <div class="stat-box">
+            <h2>50+</h2>
+            <p>Companies Visited</p>
+            </div>
+            <div class="stat-box">
+            <h2>90%</h2>
+            <p>Placement Rate</p>
+            </div>
+       
+    </div>
+
+     <div class="features">
+        <div class="feature">💼 Easy Job Applications</div>
+        <div class="feature">📊 Track Your Progress</div>
+        <div class="feature">🏢 Top Company Access</div>
+    </div>
+
+ <div class="portal-grid">
+
+    <a href="/placement" class="portal-box">🏢<br>Placement</a>
+
+    <a href="/applied_companies" class="portal-box">📋<br>Applied Companies</a>
+
+    <a href="/upcoming_companies" class="portal-box">🚀<br>Upcoming Companies</a>
+
+    {% if student.resume %}
+    <a href="{{ url_for('static', filename='uploads/' + student.resume) }}" 
+       target="_blank" class="portal-box">
+        📄<br>Resume
+    </a>
+{% else %}
+    <a href="#" class="portal-box">
+        📄<br>No Resume
+    </a>
+{% endif %}
+       
+
+    <a href="/upgrade" class="portal-box">🧑‍💻<br>Upgrade Info</a>
+
+    <a href="/preparation" class="portal-box">📚<br>Preparation Plan</a>
+
+    <a href="/notices" class="portal-box">📢<br>Notices</a>
+
+    <a href="/exams" class="portal-box">📝<br>Exams</a>
+
+</div>
+        <!-- 🔥 NEW: NOTICE SECTION -->
+        <div class="notice-box">
+            <h3>📢 Latest Notices</h3>
+            <ul>
+                <li>TCS Drive on 25 July</li>
+                <li>Resume submission deadline tomorrow</li>
+                <li>Infosys registration open</li>
+            </ul>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

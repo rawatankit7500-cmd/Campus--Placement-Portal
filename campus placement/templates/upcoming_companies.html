@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upcoming Companies</title>
+    <link rel="stylesheet" href="/static/dashboard.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+    <div class="right-panel" style="width:100%; margin-left:0;">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+            <h2 class="welcome-text">🚀 Upcoming Companies</h2>
+        </div>
+
+        <!-- TABLE -->
+        <div class="placement-section">
+
+            <table class="placement-table">
+
+                <tr>
+                    <th>Company</th>
+                    <th>Role</th>
+                    <th>Package</th>
+                    <th>CGPA</th>
+                    <th>Location</th>
+                    <th>Visit Date</th>
+                </tr>
+
+                {% for c in companies %}
+                <tr>
+                    <td>{{ c.company_name }}</td>
+                    <td>{{ c.job_role }}</td>
+                    <td>{{ c.package }}</td>
+                    <td>{{ c.cgpa }}</td>
+                    <td>{{ c.location }}</td>
+                    <td>{{ c.visit_date }}</td>
+                </tr>
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+        <!-- BOTTOM BUTTONS -->
+        <div class="bottom-actions">
+            <a href="/student/dashboard" class="btn">⬅ Back to Dashboard</a>
+            <a href="/logout" class="btn logout">Logout</a>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

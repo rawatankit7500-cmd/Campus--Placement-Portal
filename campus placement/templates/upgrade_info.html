@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Profile</title>
+    <link rel="stylesheet" href="/static/dashboard.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+    <!-- ===== LEFT PANEL ===== -->
+    <div class="left-panel">
+
+        {% if student.profile_pic %}
+    <img src="{{ url_for('static', filename='uploads/' + student.profile_pic) }}" class="profile-img">
+{% else %}
+    <img src="{{ url_for('static', filename='default.png') }}" class="profile-img">
+{% endif %}
+
+        <h2>{{ student.name }}</h2>
+        <p>{{ student.email }}</p>
+
+        <hr>
+
+        <h3>👤 Personal Details</h3>
+        <hr>
+        <p><b>ERP ID:</b> {{ student.erp_id }}</p>
+        <p><b>Roll No:</b> {{ student.roll_no }}</p>
+        <p><b>DOB:</b> {{ student.dob }}</p>
+        <p><b>Father:</b> {{ student.father_name }}</p>
+        <p><b>Phone:</b> {{ student.phone }}</p>
+        <p><b>Address:</b> {{ student.address }}</p>
+
+        <hr>
+
+        <h3>🎓 Academic Details</h3>
+        <hr>
+        <p><b>Course:</b> {{ student.course }}</p>
+        <p><b>Year:</b> {{ student.year }}</p>
+        <p><b>Section:</b> {{ student.section }}</p>
+        <p><b>CGPA:</b> {{ student.cgpa }}</p>
+
+        <hr>
+
+        <div class="logout-box">
+            <a href="/student/dashboard" class="logout-btn">⬅ Back</a>
+            <a href="/logout" class="logout-btn">Logout</a>
+        </div>
+        
+    </div>
+
+
+    <!-- ===== RIGHT PANEL ===== -->
+    <div class="right-panel">
+
+        <div class="topbar">
+            <h2 class="welcome-text">Update Your Profile</h2>
+        </div>
+
+        <div class="form-container">
+
+            <form method="POST" enctype="multipart/form-data" class="form-box">
+
+                <input type="text" name="name" value="{{ student.name }}" required>
+                <input type="text" name="phone" value="{{ student.phone }}" required>
+
+                <input type="text" name="erp_id" value="{{ student.erp_id }}">
+                <input type="text" name="roll_no" value="{{ student.roll_no }}">
+
+                <input type="text" name="father_name" value="{{ student.father_name }}">
+                <input type="text" name="mother_name" value="{{ student.mother_name }}">
+
+                <input type="date" name="dob" value="{{ student.dob }}">
+
+                <input type="text" name="college" value="{{ student.college }}">
+                <input type="text" name="course" value="{{ student.course }}">
+
+                <input type="text" name="year" value="{{ student.year }}">
+                <input type="text" name="section" value="{{ student.section }}">
+
+                <input type="number" step="0.01" name="cgpa" value="{{ student.cgpa }}">
+
+                <textarea name="address">{{ student.address }}</textarea>
+
+                <label>Update Profile Photo</label>
+                <input type="file" name="photo">
+
+                <label>Update Resume (PDF only)</label>
+                <input type="file" name="resume">
+
+                <button type="submit" class="btn">Update Profile</button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

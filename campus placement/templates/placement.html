@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Placement</title>
+    <link rel="stylesheet" href="/static/dashboard.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+    <!-- ===== LEFT PANEL ===== -->
+    <div class="left-panel">
+
+        {% if student.profile_pic %}
+    <img src="{{ url_for('static', filename='uploads/' + student.profile_pic) }}" class="profile-img">
+{% else %}
+    <img src="{{ url_for('static', filename='default.png') }}" class="profile-img">
+{% endif %}
+        <h2>{{ student.name }}</h2>
+        <p>{{ student.email }}</p>
+
+        <hr>
+        <p><b>ERP ID :  </b> {{ student.erp_id }}</p>
+        <p><b>College : </b> {{ student.college }}</p>
+        <p><b>Phone :   </b> {{ student.phone }}</p>
+        <p><b>Course :  </b> {{ student.course }}</p>
+        <p><b>CGPA :    </b> {{ student.cgpa }}</p>
+
+        <hr>
+
+
+        <div class="logout-box">
+            <a href="/student/dashboard" class="logout-btn">⬅ Back</a>
+            <a href="/logout" class="logout-btn">Logout</a>
+        </div>
+
+    </div>
+
+
+    <!-- ===== RIGHT PANEL ===== -->
+    <div class="right-panel">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+            <h2 class="welcome-text">Placement Opportunities</h2>
+        </div>
+
+        <!-- TABLE -->
+        <div class="placement-section">
+
+            <table class="placement-table">
+
+                <tr>
+                    <th>Company</th>
+                    <th>Role</th>
+                    <th>Package</th>
+                    <th>CGPA</th>
+                    <th>Skills</th>
+                    <th>Location</th>
+                    <th>Date</th>
+                    <th>Apply</th>
+                </tr>
+
+                {% if companies %}
+                    {% for c in companies %}
+                    <tr>
+                        <td>{{ c.company_name }}</td>
+                        <td>{{ c.job_role }}</td>
+                        <td>{{ c.package }}</td>
+                        <td>{{ c.eligibility_cgpa }}</td>
+                        <td>{{ c.required_skills }}</td>
+                        <td>{{ c.location }}</td>
+                        <td>{{ c.visit_date }}</td>
+                        <td>
+                            <a href="/apply/{{ c.id }}" class="btn">Apply</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="8">No Companies Available</td>
+                    </tr>
+                {% endif %}
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resume</title>
+    <link rel="stylesheet" href="/static/dashboard.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+    <!-- LEFT PANEL -->
+    <div class="left-panel">
+
+        <img src="{{ url_for('static', filename='uploads/' + student.profile_pic) }}" class="profile-img">
+
+        <h2>{{ student.name }}</h2>
+        <p>{{ student.email }}</p>
+
+        <hr>
+
+        <p><b>Phone:</b> {{ student.phone }}</p>
+        <p><b>Course:</b> {{ student.course }}</p>
+        <p><b>CGPA:</b> {{ student.cgpa }}</p>
+
+        <hr>
+
+        <div class="logout-box">
+            <a href="/student/dashboard" class="logout-btn">⬅ Back</a>
+            <a href="/logout" class="logout-btn">Logout</a>
+        </div>
+
+    </div>
+
+
+    <!-- RIGHT PANEL -->
+    <div class="right-panel">
+
+        <div class="topbar">
+            <h2 class="welcome-text">My Resume</h2>
+        </div>
+
+        <div class="resume-section">
+
+            {% if student.resume %}
+
+                <h3>📄 Resume Available</h3>
+
+                <!-- VIEW -->
+                <a href="{{ url_for('static', filename='uploads/' + student.resume) }}" 
+                   target="_blank" class="btn">
+                   👁 View Resume
+                </a>
+
+                <!-- DOWNLOAD -->
+                <a href="{{ url_for('static', filename='uploads/' + student.resume) }}" 
+                   download class="btn">
+                   ⬇ Download Resume
+                </a>
+
+                <!-- INLINE PREVIEW (PDF ONLY) -->
+                <div class="resume-preview">
+                    <iframe 
+                        src="{{ url_for('static', filename='uploads/' + student.resume) }}" 
+                        width="100%" height="500px">
+                    </iframe>
+                </div>
+
+            {% else %}
+                <h3>No Resume Uploaded ❌</h3>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
